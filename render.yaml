@@ -11,6 +11,8 @@ services:
     envVars:
       - key: FASTAPI_ENV
         value: production
+      - key: PYTHON_VERSION
+        value: "3.11.11"
       - key: LOG_LEVEL
         value: info
       - key: ALLOWED_ORIGINS
