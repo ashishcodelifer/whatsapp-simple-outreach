@@ -1,0 +1,29 @@
+{
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/.next",
+  "framework": "nextjs",
+  "installCommand": "npm install",
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  },
+  "env": {
+    "NEXT_PUBLIC_API_URL": {
+      "description": "Backend API URL (e.g., https://api.yourdomain.com or https://your-app.railway.app)"
+    },
+    "DATABASE_URL": {
+      "description": "PostgreSQL connection string"
+    }
+  },
+  "envPrefix": [
+    "NEXT_PUBLIC_",
+    "DATABASE_",
+    "FASTAPI_"
+  ],
+  "regions": [
+    "iad1"
+  ],
+  "buildOutputDirectory": "frontend/.next",
+  "publicSource": "frontend/public"
+}
