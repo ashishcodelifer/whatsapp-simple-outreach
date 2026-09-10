@@ -33,4 +33,13 @@ export const extractionAPI = {
   status: (jobId: number) => api.get(`/api/extraction/job/${jobId}`),
 };
 
+export const outreachAPI = {
+  logWhatsApp: (leadId: number, messageText: string) =>
+    api.post('/api/outreach', {
+      lead_id: leadId,
+      channel: 'whatsapp',
+      message_text: messageText,
+    }),
+};
+
 export default api;

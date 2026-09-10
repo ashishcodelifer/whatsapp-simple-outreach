@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Search, MessageSquare, Mail, Globe, Phone, Trash2, Edit2, ExternalLink } from 'lucide-react';
-import { leadsAPI } from '@/lib/api';
+import { leadsAPI, outreachAPI } from '@/lib/api';
 import { formatDate, getStatusBadgeColor, truncate, formatPhoneNumber, getDomain } from '@/lib/utils';
 
 interface Lead {
@@ -43,6 +43,10 @@ export default function LeadsPage() {
   const [country, setCountry] = useState('');
   const [sortBy, setSortBy] = useState('created_at');
   const [sortOrder, setSortOrder] = useState('desc');
+  const [messageTemplate, setMessageTemplate] = useState(
+    'Hello! I found your business online and would like to connect. Is this a good time to chat?'
+  );
+  const [messageByLead, setMessageByLead] = useState<Record<number, string>>({});
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
@@ -87,6 +91,22 @@ export default function LeadsPage() {
     }
   };
 
+  const openWhatsApp = async (lead: Lead) => {
+    const number = (lead.whatsapp || lead.phone || '').replace(/\D/g, '');
+    const message = messageByLead[lead.id] ?? messageTemplate;
+    if (!number) {
+      alert('This lead does not have a WhatsApp phone number.');
+      return;
+    }
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+    try {
+      await outreachAPI.logWhatsApp(lead.id, message);
+      setLeads((current) => current.map((item) => item.id === lead.id ? { ...item, status: 'contacted' } : item));
+    } catch (err) {
+      console.error('Could not log WhatsApp outreach', err);
+    }
+  };
+
   const totalPages = Math.ceil(total / limit);
   const currentPage = page + 1;
 
@@ -105,6 +125,16 @@ export default function LeadsPage() {
 
       {/* Filters */}
       <div className="card">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          WhatsApp message template
+        </label>
+        <textarea
+          value={messageTemplate}
+          onChange={(e) => setMessageTemplate(e.target.value)}
+          rows={3}
+          className="input w-full mb-4"
+          placeholder="Type the message you want to send..."
+        />
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {/* Search */}
           <div className="md:col-span-2">
@@ -229,13 +259,19 @@ export default function LeadsPage() {
                       {lead.country && <div className="text-xs text-gray-500">{lead.country}</div>}
                     </td>
                     <td className="px-6 py-4">
-                      <div className="flex gap-2">
+                      <div className="space-y-2">
+                        <textarea
+                          value={messageByLead[lead.id] ?? messageTemplate}
+                          onChange={(e) => setMessageByLead({ ...messageByLead, [lead.id]: e.target.value })}
+                          rows={2}
+                          className="input w-56 text-xs"
+                          aria-label={`Message for ${lead.business_name}`}
+                        />
+                        <div className="flex gap-2">
                         {lead.whatsapp && (
-                          <button
-                            className="p-1.5 bg-green-100 text-green-600 rounded hover:bg-green-200"
-                            title={`WhatsApp: ${formatPhoneNumber(lead.whatsapp)}`}
-                          >
+                          <button onClick={() => openWhatsApp(lead)} className="btn btn-success text-xs" title={`Open WhatsApp for ${formatPhoneNumber(lead.whatsapp)}`}>
                             <MessageSquare size={16} />
+                            <span className="ml-1">Send</span>
                           </button>
                         )}
                         {lead.email && (
@@ -262,6 +298,7 @@ export default function LeadsPage() {
                             <Globe size={16} />
                           </button>
                         )}
+                        </div>
                       </div>
                     </td>
                     <td className="px-6 py-4">

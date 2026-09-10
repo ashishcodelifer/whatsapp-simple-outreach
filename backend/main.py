@@ -27,6 +27,9 @@ ALLOWED_ORIGINS = os.getenv(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
+    # Allows the optional, user-installed Maps collector extension to submit
+    # records without opening the API to arbitrary web origins.
+    allow_origin_regex=r"^chrome-extension://[a-z]{32}$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
