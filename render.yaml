@@ -25,6 +25,6 @@ services:
 databases:
   - name: lead-gen-db
     databaseName: lead_generation_db
-    user: postgres
+    user: leadgenuser
     plan: free
     postgresMajorVersion: "15"
