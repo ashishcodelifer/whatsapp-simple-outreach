@@ -79,7 +79,7 @@ export default function ExtractPage() {
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Extract Leads</h1>
         <p className="text-gray-600 mt-2">
-          Set up extraction parameters for Phase 2 (Browser extension data mining)
+          Run a query using your Chrome extension
         </p>
       </div>
 
@@ -88,9 +88,9 @@ export default function ExtractPage() {
         <div className="flex gap-4">
           <Zap className="text-yellow-600 flex-shrink-0" size={24} />
           <div>
-            <h3 className="font-semibold text-yellow-900 mb-2">Phase 2: Planned</h3>
+            <h3 className="font-semibold text-yellow-900 mb-2">Keep your extension open</h3>
             <p className="text-yellow-800 text-sm">
-              Extraction configuration is ready for Phase 2, which will include automated lead scraping via Chrome extension.
+              Set your query here, then keep the Chrome extension open. Matching results will be transferred to this workspace.
             </p>
           </div>
         </div>
@@ -271,7 +271,7 @@ export default function ExtractPage() {
               Job ID: <span className="font-mono font-bold">{jobId}</span>
             </p>
             <p className="text-gray-600 mb-6">
-              Your extraction job has been submitted. In Phase 2, this will trigger automated lead scraping from your sources.
+              Your query has been queued. Keep the Chrome extension open so matching results can flow into your lead queue.
             </p>
 
             {/* Filter Summary */}
