@@ -2,83 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  color-scheme: light;
 }
 
-html,
-body {
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
   max-width: 100%;
   overflow-x: hidden;
-  background: #f9fafb;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  background: #f7f8fa;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #0f172a;
 }
 
-.container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
+button, input, textarea, select { font: inherit; }
 
-/* Utility classes */
-.card {
-  @apply bg-white rounded-lg shadow-md p-6;
-}
+.card { @apply bg-white border border-slate-200/80 rounded-2xl shadow-[0_8px_30px_rgba(15,23,42,0.04)]; }
+.btn { @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 cursor-pointer; }
+.btn-primary { @apply btn bg-slate-950 text-white hover:bg-slate-800; }
+.btn-secondary { @apply btn bg-white border border-slate-200 text-slate-700 hover:bg-slate-50; }
+.btn-success { @apply btn bg-emerald-500 text-slate-950 hover:bg-emerald-400; }
+.btn-danger { @apply btn bg-red-50 text-red-700 hover:bg-red-100; }
+.input { @apply px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400/40 focus:border-emerald-400; }
+.table-head { @apply bg-slate-50/80 text-slate-500; }
+.badge { @apply inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full; }
+.badge-gray { @apply badge bg-slate-100 text-slate-600; }
+.badge-success { @apply badge bg-emerald-50 text-emerald-700; }
+.badge-info { @apply badge bg-blue-50 text-blue-700; }
+.badge-warning { @apply badge bg-amber-50 text-amber-700; }
+.badge-danger { @apply badge bg-red-50 text-red-700; }
 
-.btn {
-  @apply px-4 py-2 rounded-lg font-medium transition-colors duration-200 cursor-pointer;
-}
-
-.btn-primary {
-  @apply btn bg-blue-500 text-white hover:bg-blue-600;
-}
-
-.btn-secondary {
-  @apply btn bg-gray-200 text-gray-800 hover:bg-gray-300;
-}
-
-.btn-danger {
-  @apply btn bg-red-500 text-white hover:bg-red-600;
-}
-
-.btn-success {
-  @apply btn bg-green-500 text-white hover:bg-green-600;
-}
-
-.input {
-  @apply px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
-}
-
-.table-head {
-  @apply bg-gray-100 font-semibold text-gray-700;
-}
-
-.badge {
-  @apply inline-block px-2 py-1 text-xs font-medium rounded;
-}
-
-.badge-new {
-  @apply badge bg-blue-100 text-blue-800;
-}
-
-.badge-contacted {
-  @apply badge bg-yellow-100 text-yellow-800;
-}
-
-.badge-qualified {
-  @apply badge bg-green-100 text-green-800;
-}
-
-.badge-in-progress {
-  @apply badge bg-purple-100 text-purple-800;
-}
-
-.badge-closed {
-  @apply badge bg-gray-100 text-gray-800;
-}
-
-.badge-rejected {
-  @apply badge bg-red-100 text-red-800;
-}
+::selection { background: #a7f3d0; color: #064e3b; }
