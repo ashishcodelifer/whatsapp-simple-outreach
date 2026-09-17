@@ -75,7 +75,6 @@ export default function LeadsPage() {
     <div className="space-y-7">
       <section className="flex flex-col lg:flex-row lg:items-end justify-between gap-5">
         <div><p className="text-sm font-semibold text-emerald-600 mb-2">Relationship pipeline</p><h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-950">Your leads</h1><p className="text-slate-500 mt-2">A clean view of the businesses you can reach next.</p></div>
-        <a href="/import" className="btn btn-primary w-fit"><span className="text-emerald-400">+</span> Import leads</a>
       </section>
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-3">

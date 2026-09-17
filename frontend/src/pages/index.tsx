@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Chrome, MessageSquare, Search, Upload, Users, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Chrome, MessageSquare, Search, Users, CheckCircle2 } from 'lucide-react';
 import { dashboardAPI } from '@/lib/api';
 
 interface Metrics {
@@ -37,7 +37,6 @@ export default function Dashboard() {
           <p className="text-slate-500 mt-2 max-w-xl">Keep the extension open, collect the right businesses, then start personal conversations from one focused queue.</p>
         </div>
         <div className="flex gap-3">
-          <Link href="/import" className="btn btn-secondary"><Upload size={16} /> Import file</Link>
           <Link href="/extract" className="btn btn-primary"><Search size={16} /> Find leads <ArrowRight size={15} /></Link>
         </div>
       </section>
@@ -78,7 +77,7 @@ export default function Dashboard() {
         </div>
       </section>
 
-      <div className="flex items-center justify-between text-sm text-slate-400 px-1"><span>{metrics?.recent_activity_count || 0} recent activity items</span><Link href="/settings" className="hover:text-slate-700">Workspace settings</Link></div>
+      <div className="flex items-center justify-between text-sm text-slate-400 px-1"><span>{metrics?.recent_activity_count || 0} recent activity items</span></div>
     </div>
   );
 }
