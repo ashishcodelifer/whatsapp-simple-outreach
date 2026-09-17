@@ -8,7 +8,7 @@ import { BarChart3, Users, Search, Menu, X, MessageSquare, ArrowRight, Moon, Sun
 export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem('leadflow_theme');
