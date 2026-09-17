@@ -34,3 +34,33 @@ button, input, textarea, select { font: inherit; }
 .badge-danger { @apply badge bg-red-50 text-red-700; }
 
 ::selection { background: #a7f3d0; color: #064e3b; }
+
+/* Dark mode is toggled on the document root and persisted by Layout. */
+html.dark { color-scheme: dark; }
+html.dark body { background: #0f172a; color: #e2e8f0; }
+html.dark main .bg-\[\#f7f8fa\],
+html.dark main .bg-white { background-color: #111827; }
+html.dark aside .bg-white { background-color: #334155; color: #f8fafc; }
+html.dark header { background-color: rgba(15, 23, 42, 0.9); border-color: #334155; }
+html.dark main .text-slate-950,
+html.dark header .text-slate-800 { color: #f8fafc; }
+html.dark main .text-slate-700 { color: #cbd5e1; }
+html.dark main .text-slate-600,
+html.dark main .text-slate-500,
+html.dark header .text-slate-500 { color: #94a3b8; }
+html.dark .card { background-color: #1e293b; border-color: #334155; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); }
+html.dark .border-slate-200,
+html.dark .border-slate-200\/80 { border-color: #334155; }
+html.dark .input { background-color: #0f172a; border-color: #475569; color: #f8fafc; }
+html.dark .input::placeholder { color: #64748b; }
+html.dark .table-head,
+html.dark .bg-slate-50\/80 { background-color: #172033; color: #94a3b8; }
+html.dark .hover\:bg-slate-50:hover,
+html.dark .hover\:bg-slate-100:hover { background-color: #334155; }
+html.dark .bg-slate-100 { background-color: #334155; }
+html.dark .text-slate-400 { color: #94a3b8; }
+html.dark .badge-gray { background-color: #334155; color: #cbd5e1; }
+html.dark .badge-success { background-color: rgba(16, 185, 129, 0.18); color: #6ee7b7; }
+html.dark .badge-info { background-color: rgba(59, 130, 246, 0.18); color: #93c5fd; }
+html.dark .badge-warning { background-color: rgba(245, 158, 11, 0.18); color: #fcd34d; }
+html.dark .badge-danger { background-color: rgba(239, 68, 68, 0.18); color: #fca5a5; }

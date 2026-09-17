@@ -1,18 +1,33 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { BarChart3, Users, Search, Menu, X, MessageSquareText, Upload, ArrowRight } from 'lucide-react';
+import { BarChart3, Users, Search, Menu, X, MessageSquare, Upload, ArrowRight, Moon, Sun } from 'lucide-react';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem('leadflow_theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setDarkMode(savedTheme === 'dark' || (savedTheme === null && prefersDark));
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkMode);
+    document.documentElement.style.colorScheme = darkMode ? 'dark' : 'light';
+    window.localStorage.setItem('leadflow_theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+
+  const toggleTheme = () => setDarkMode((current) => !current);
   const navItems = [
     { name: 'Overview', path: '/', icon: BarChart3 },
     { name: 'Find leads', path: '/extract', icon: Search },
     { name: 'Lead queue', path: '/leads', icon: Users },
-    { name: 'Message template', path: '/templates', icon: MessageSquareText },
+    { name: 'Message template', path: '/templates', icon: MessageSquare },
   ];
   const pageTitle = router.pathname === '/extract' ? 'Find leads' : router.pathname === '/leads' ? 'Lead queue' : router.pathname === '/templates' ? 'Message template' : 'Overview';
 
@@ -31,7 +46,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="flex-1 min-w-0 flex flex-col">
         <header className="h-20 bg-white/90 backdrop-blur border-b border-slate-200 px-4 sm:px-8 flex items-center justify-between sticky top-0 z-20">
           <div className="flex items-center gap-3"><button onClick={() => setSidebarOpen(!sidebarOpen)} className="md:hidden p-2 rounded-lg hover:bg-slate-100" aria-label="Open navigation"><Menu size={20} /></button><div><p className="text-xs font-medium text-slate-400 uppercase tracking-[0.18em]">Leadflow</p><h2 className="text-sm sm:text-base font-semibold text-slate-800">{pageTitle}</h2></div></div>
-          <div className="flex items-center gap-3"><Link href="/import" className="hidden sm:flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900"><Upload size={16} /> Import file</Link><Link href="/extract" className="btn btn-primary py-2"><Search size={15} /> <span className="hidden sm:inline">Find leads</span></Link></div>
+          <div className="flex items-center gap-3"><Link href="/import" className="hidden sm:flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900"><Upload size={16} /> Import file</Link><button onClick={toggleTheme} className="p-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-white/10 dark:hover:text-white" aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"} title={darkMode ? "Switch to light mode" : "Switch to dark mode"}>{darkMode ? <Sun size={18} /> : <Moon size={18} />}</button><Link href="/extract" className="btn btn-primary py-2"><Search size={15} /> <span className="hidden sm:inline">Find leads</span></Link></div>
         </header>
         <main className="flex-1 overflow-auto p-4 sm:p-8"><div className="max-w-[1440px] mx-auto">{children}</div></main>
       </div>
