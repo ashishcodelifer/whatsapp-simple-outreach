@@ -93,3 +93,41 @@ html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color: #2
 html.dark .border-slate-100 { border-color: #262626; }
 html.dark .text-red-700 { color: #fca5a5; }
 html.dark .bg-red-50 { background-color: rgba(239, 68, 68, 0.14); }
+/* Cross-page dark tokens for legacy gray utility classes. */
+html.dark .bg-\[\#f7f8fa\] { background-color: #030303; }
+html.dark main { background: radial-gradient(circle at 100% 0%, rgba(142, 192, 96, 0.07), transparent 34%), #030303; }
+html.dark main .text-slate-900,
+html.dark main .text-gray-900 { color: #f8fafc; }
+html.dark main .text-gray-800,
+html.dark main .text-gray-700,
+html.dark main .text-slate-700 { color: #cbd5e1; }
+html.dark main .text-gray-600,
+html.dark main .text-gray-500,
+html.dark main .text-gray-400 { color: #94a3b8; }
+html.dark main .bg-gray-50 { background-color: #172033; }
+html.dark main .bg-green-50 { background-color: rgba(142, 192, 96, 0.14); }
+html.dark main .bg-yellow-50 { background-color: rgba(249, 81, 6, 0.14); }
+html.dark main .bg-blue-50 { background-color: rgba(15, 61, 222, 0.18); }
+html.dark main .bg-red-50 { background-color: rgba(239, 68, 68, 0.14); }
+html.dark main .border-gray-200,
+html.dark main .border-gray-300,
+html.dark main .border-green-200,
+html.dark main .border-yellow-200,
+html.dark main .border-red-200,
+html.dark main .border-blue-200 { border-color: #334155; }
+html.dark main .text-blue-900,
+html.dark main .text-blue-800 { color: #b9c8ff; }
+html.dark main .text-blue-600 { color: #8fa9ff; }
+html.dark main .text-green-700,
+html.dark main .text-green-600 { color: #b5e184; }
+html.dark main .text-yellow-900,
+html.dark main .text-yellow-800,
+html.dark main .text-yellow-700,
+html.dark main .text-yellow-600 { color: #ffb38f; }
+html.dark main .text-red-900,
+html.dark main .text-red-700,
+html.dark main .text-red-600 { color: #fca5a5; }
+html.dark main select option { background-color: #111111; color: #f8fafc; }
+html.dark main .bg-\[\#d9fdd3\] { background-color: #8ec060; color: #030303; }
+html.dark main .border-t,
+html.dark main .border-b { border-color: #262626; }
