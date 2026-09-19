@@ -147,6 +147,13 @@ async def update_lead(
     return schemas.LeadResponse.model_validate(updated_lead)
 
 
+@app.delete("/api/leads/all")
+async def delete_all_leads(db: Session = Depends(get_db)):
+    """Delete all leads"""
+    deleted_count = crud.delete_all_leads(db)
+    return {"status": "success", "deleted_count": deleted_count}
+
+
 @app.delete("/api/leads/{lead_id}")
 async def delete_lead(lead_id: int, db: Session = Depends(get_db)):
     """Delete a lead"""

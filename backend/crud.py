@@ -131,6 +131,16 @@ def delete_lead(db: Session, lead_id: int):
     return db_lead
 
 
+def delete_all_leads(db: Session):
+    try:
+        count = db.query(models.Lead).delete()
+        db.commit()
+        return count
+    except Exception:
+        db.rollback()
+        raise
+
+
 def check_duplicate_lead(db: Session, lead: schemas.LeadCreate):
     """Check for duplicate leads using multiple criteria"""
 

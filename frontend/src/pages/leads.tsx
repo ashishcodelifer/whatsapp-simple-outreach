@@ -57,6 +57,16 @@ export default function LeadsPage() {
     } catch { alert('Failed to delete lead'); }
   };
 
+  const handleClearAll = async () => {
+    if (!confirm('Are you sure you want to delete all leads? This cannot be undone.')) return;
+    try {
+      await leadsAPI.deleteAll();
+      setLeads([]);
+      setTotal(0);
+      setPage(0);
+    } catch { alert('Failed to clear leads'); }
+  };
+
   const openWhatsApp = async (lead: Lead) => {
     const number = (lead.whatsapp || lead.phone || '').replace(/\D/g, '');
     if (!number) { alert('This lead does not have a WhatsApp phone number.'); return; }
@@ -75,6 +85,7 @@ export default function LeadsPage() {
     <div className="space-y-7">
       <section className="flex flex-col lg:flex-row lg:items-end justify-between gap-5">
         <div><p className="text-sm font-semibold text-emerald-600 mb-2">Relationship pipeline</p><h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-950">Your leads</h1><p className="text-slate-500 mt-2">A clean view of the businesses you can reach next.</p></div>
+        <div><button onClick={handleClearAll} className="btn btn-secondary text-red-600 hover:bg-red-50 hover:border-red-200 disabled:opacity-40" disabled={total === 0}><Trash2 size={16} className="inline mr-2" />Clear all</button></div>
       </section>
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-3">

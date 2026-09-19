@@ -16,6 +16,7 @@ export const leadsAPI = {
   create: (lead: unknown) => api.post('/api/leads', lead),
   update: (id: number, lead: unknown) => api.put(`/api/leads/${id}`, lead),
   delete: (id: number) => api.delete(`/api/leads/${id}`),
+  deleteAll: () => api.delete('/api/leads/all'),
 };
 
 export const importAPI = {
